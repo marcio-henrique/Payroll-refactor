@@ -23,7 +23,7 @@ public class DateUtil {
             lastDayOfMonth = lastDayOfMonth.minusDays(2);
         }
 
-        return date.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth() == date.getDayOfMonth();
+        return lastDayOfMonth.getDayOfMonth() == date.getDayOfMonth();
     }
 
     public static boolean isSameDay(LocalDate date, int day) {
