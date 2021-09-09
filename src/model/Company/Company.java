@@ -3,8 +3,10 @@ package model.Company;
 import model.Employee.Employee;
 import model.Payment.PaymentEmployee;
 import model.Payment.PaymentHistory;
-import model.Payment.PaymentMethod;
-import model.Payment.PaymentSchedule;
+import model.Payment.Schedule.BiWeeklySchedule;
+import model.Payment.Schedule.MonthlySchedule;
+import model.Payment.Schedule.PaymentSchedule;
+import model.Payment.Schedule.WeeklySchedule;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,35 +27,35 @@ public class Company implements Serializable {
     }
 
     private void initializePaymentSchedules() {
-        PaymentSchedule hourlySchedule = new PaymentSchedule(2, 1, 5);
-        PaymentSchedule salariedSchedule = new PaymentSchedule(1, 0);
-        PaymentSchedule commissionedSchedule = new PaymentSchedule(2, 2, 5);
+        PaymentSchedule hourlySchedule = new PaymentSchedule(new WeeklySchedule(), null, 5);
+        PaymentSchedule salariedSchedule = new PaymentSchedule(new MonthlySchedule(), 0, null);
+        PaymentSchedule commissionedSchedule = new PaymentSchedule(new BiWeeklySchedule(), null, 5);
 
         paymentSchedules.add(hourlySchedule);
         paymentSchedules.add(salariedSchedule);
         paymentSchedules.add(commissionedSchedule);
     }
 
-    public PaymentSchedule getPaymentSchedule(int type, int frequency, int weekDay) {
-        for (PaymentSchedule paymentSchedule: this.paymentSchedules) {
-            if (paymentSchedule.getType() == type &&
-                    paymentSchedule.getFrequency() == frequency &&
-                    paymentSchedule.getWeekDay() == weekDay) {
-                return paymentSchedule;
-            }
-        }
-        return  null;
-    }
-
-    public PaymentSchedule getPaymentSchedule(int type, int day) {
-        for (PaymentSchedule paymentSchedule: this.paymentSchedules) {
-            if (paymentSchedule.getType() == type &&
-                    paymentSchedule.getDay() == day) {
-                return paymentSchedule;
-            }
-        }
-        return  null;
-    }
+//    public PaymentSchedule getPaymentSchedule(int type, int frequency, int weekDay) {
+//        for (PaymentSchedule paymentSchedule: this.paymentSchedules) {
+//            if (paymentSchedule.getType() == type &&
+//                    paymentSchedule.getFrequency() == frequency &&
+//                    paymentSchedule.getWeekDay() == weekDay) {
+//                return paymentSchedule;
+//            }
+//        }
+//        return  null;
+//    }
+//
+//    public PaymentSchedule getPaymentSchedule(int type, int day) {
+//        for (PaymentSchedule paymentSchedule: this.paymentSchedules) {
+//            if (paymentSchedule.getType() == type &&
+//                    paymentSchedule.getDay() == day) {
+//                return paymentSchedule;
+//            }
+//        }
+//        return  null;
+//    }
 
     public ArrayList<PaymentSchedule> getPaymentSchedules() {
         return paymentSchedules;

@@ -1,6 +1,7 @@
 package model.Payment;
 
 import model.Employee.Employee;
+import model.Payment.Schedule.PaymentSchedule;
 import util.DateUtil;
 
 import java.io.Serializable;
@@ -75,34 +76,16 @@ public class PaymentEmployee implements Serializable {
         }
 
         PaymentHistory lastPayment = this.getLastPayment();
+        LocalDate lastPaymentDate = null;
 
         if (lastPayment != null) {
-            if(lastPayment.getDate().equals(date) || lastPayment.getDate().isAfter(date)) {
+            lastPaymentDate = lastPayment.getDate();
+            if(lastPaymentDate.equals(date) || lastPaymentDate.isAfter(date)) {
                 return false;
             }
-
         }
 
-
-        int paymentType;
-        paymentType= this.paymentSchedule.getType();
-
-        if (paymentType == 1) /*monthly*/{
-            int paymentDay = this.paymentSchedule.getDay();
-            if (paymentDay == 0)/*last month day*/{
-                return DateUtil.isLastWorkDayOfMonth(date);
-
-            } else return DateUtil.isSameDay(date, paymentDay);
-
-        } else if (paymentType == 2)/*weekly*/ {
-            if (lastPayment != null) {
-                return (DateUtil.isSameWeekDay(date, this.getPaymentSchedule().getWeekDay())) &&
-                        ChronoUnit.WEEKS.between(lastPayment.getDate(), date) >= paymentSchedule.getFrequency();
-            }
-            return (DateUtil.isSameWeekDay(date, this.getPaymentSchedule().getWeekDay()));
-        }
-
-        return false;
+        return  this.paymentSchedule.isDateToPay(lastPaymentDate, date);
     }
 
     @Override
