@@ -24,46 +24,6 @@ public class PaymentMethod implements Serializable {
         this.checkNumber = checkNumber;
     }
 
-    public int getAgency() {
-        return agency;
-    }
-
-    public void setAgency(int agency) {
-        this.agency = agency;
-    }
-
-    public int getAccount() {
-        return account;
-    }
-
-    public void setAccount(int account) {
-        this.account = account;
-    }
-
-    public int getVariation() {
-        return variation;
-    }
-
-    public void setVariation(int variation) {
-        this.variation = variation;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int getCheckNumber() {
-        return checkNumber;
-    }
-
-    public void setCheckNumber(int checkNumber) {
-        this.checkNumber = checkNumber;
-    }
-
     @Override
     public String toString() {
         String typeString = "";

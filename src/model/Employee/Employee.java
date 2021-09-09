@@ -14,9 +14,6 @@ public class Employee implements Serializable {
     private EmployeeSyndicate employeeSyndicate;
     private PaymentEmployee paymentEmployee;
 
-    public Employee() {
-    }
-
     public Employee(String name, Double salary, String address) {
         this.id = UUID.randomUUID();
         this.name = name;
@@ -33,14 +30,6 @@ public class Employee implements Serializable {
         this.employeeSyndicate = null;
     }
 
-    public Employee(String name, Double salary, String address, Double mounthlySyndicateTax) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.salary = salary;
-        this.address = address;
-        this.employeeSyndicate = new EmployeeSyndicate(mounthlySyndicateTax);
-    }
-
     public UUID getId() {
         return id;
     }
@@ -55,10 +44,6 @@ public class Employee implements Serializable {
 
     public Double getSalary() {
         return salary;
-    }
-
-    public void setSalary(Double salary) {
-        this.salary = salary;
     }
 
     public String getAddress() {
@@ -97,7 +82,7 @@ public class Employee implements Serializable {
         if (this.employeeSyndicate == null) {
             string += "No";
         } else {
-            string += "Yes\n\t" + this.employeeSyndicate.toString();
+            string += "Yes\n\t" + this.employeeSyndicate;
         }
 
         string += this.paymentEmployee;

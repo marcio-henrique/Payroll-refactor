@@ -16,16 +16,8 @@ public class AdditionalServiceTax implements Serializable {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public Double getValue() {
         return value;
-    }
-
-    public void setValue(Double value) {
-        this.value = value;
     }
 
     @Override

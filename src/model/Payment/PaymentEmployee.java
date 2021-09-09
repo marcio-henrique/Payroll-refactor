@@ -6,7 +6,6 @@ import util.DateUtil;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class PaymentEmployee implements Serializable {
@@ -26,20 +25,12 @@ public class PaymentEmployee implements Serializable {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
-    }
-
-    public ArrayList<PaymentHistory> getPaymentHistories() {
-        return paymentHistories;
     }
 
     public void setPaymentHistory(PaymentHistory paymentHistory) {

@@ -36,49 +36,16 @@ public class Company implements Serializable {
         paymentSchedules.add(commissionedSchedule);
     }
 
-//    public PaymentSchedule getPaymentSchedule(int type, int frequency, int weekDay) {
-//        for (PaymentSchedule paymentSchedule: this.paymentSchedules) {
-//            if (paymentSchedule.getType() == type &&
-//                    paymentSchedule.getFrequency() == frequency &&
-//                    paymentSchedule.getWeekDay() == weekDay) {
-//                return paymentSchedule;
-//            }
-//        }
-//        return  null;
-//    }
-//
-//    public PaymentSchedule getPaymentSchedule(int type, int day) {
-//        for (PaymentSchedule paymentSchedule: this.paymentSchedules) {
-//            if (paymentSchedule.getType() == type &&
-//                    paymentSchedule.getDay() == day) {
-//                return paymentSchedule;
-//            }
-//        }
-//        return  null;
-//    }
-
     public ArrayList<PaymentSchedule> getPaymentSchedules() {
         return paymentSchedules;
-    }
-
-    public void setPaymentSchedules(ArrayList<PaymentSchedule> paymentSchedules) {
-        this.paymentSchedules = paymentSchedules;
     }
 
     public ArrayList<Employee> getEmployees() {
         return employees;
     }
 
-    public void setEmployees(ArrayList<Employee> employees) {
-        this.employees = employees;
-    }
-
     public ArrayList<PaymentEmployee> getPaymentEmployees() {
         return paymentEmployees;
-    }
-
-    public void setPaymentEmployees(ArrayList<PaymentEmployee> paymentEmployees) {
-        this.paymentEmployees = paymentEmployees;
     }
 
     public ArrayList<PaymentHistory> getPaymentHistories() {

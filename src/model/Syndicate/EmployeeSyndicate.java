@@ -1,7 +1,5 @@
 package model.Syndicate;
 
-import model.Employee.TimeCard;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,9 +16,6 @@ public class EmployeeSyndicate implements Serializable {
         this.additionalServicesTaxes = new ArrayList<AdditionalServiceTax>();
     }
 
-    public UUID getEmployeeSyndicateId() {
-        return employeeSyndicateId;
-    }
 
     public void setEmployeeSyndicateId(UUID employeeSyndicateId) {
         this.employeeSyndicateId = employeeSyndicateId;
@@ -34,9 +29,6 @@ public class EmployeeSyndicate implements Serializable {
         this.monthlyTax = monthlyTax;
     }
 
-    public ArrayList<AdditionalServiceTax> getAdditionalServicesTaxes() {
-        return additionalServicesTaxes;
-    }
     public void setAdditionalServiceTax(AdditionalServiceTax additionalServiceTax) {
         this.additionalServicesTaxes.add(additionalServiceTax);
     }

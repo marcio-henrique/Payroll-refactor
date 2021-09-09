@@ -3,10 +3,8 @@ package model.Payment.Schedule;
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class PaymentSchedule implements Serializable {
-    private UUID id;
     private Integer day;    //to monthly type, 0 = last month day
     private Integer weekDay;    //for weekly type
     private ScheduleStrategy scheduleStrategy;
@@ -15,23 +13,14 @@ public class PaymentSchedule implements Serializable {
         this.scheduleStrategy = scheduleStrategy;
         this.day = day;
         this.weekDay = weekDay;
-        this.id = UUID.randomUUID();
     }
 
     public Integer getDay() {
         return day;
     }
 
-    public void setDay(Integer day) {
-        this.day = day;
-    }
-
     public Integer getWeekDay() {
         return weekDay;
-    }
-
-    public void setWeekDay(Integer weekDay) {
-        this.weekDay = weekDay;
     }
 
     public ScheduleStrategy getScheduleStrategy() {

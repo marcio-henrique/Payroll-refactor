@@ -16,18 +16,9 @@ public class TimeCard implements Serializable {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public Double getWorkedHours() {
         return workedHours;
     }
-
-    public void setWorkedHours(Double workedHours) {
-        this.workedHours = workedHours;
-    }
-
 
     @Override
     public String toString() {

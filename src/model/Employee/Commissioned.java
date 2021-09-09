@@ -8,9 +8,6 @@ public class Commissioned extends Employee {
     private Double commissionPercentage;
     private ArrayList<SaleResult> salesResults;
 
-    public Commissioned() {
-    }
-
     public Commissioned(UUID id, String name, Double salary, String address, Double commissionPercentage) {
         super(id, name, salary, address);
         this.commissionPercentage = commissionPercentage;
@@ -23,17 +20,6 @@ public class Commissioned extends Employee {
         this.salesResults = new ArrayList<SaleResult>();
     }
 
-    public Double getCommissionPercentage() {
-        return commissionPercentage;
-    }
-
-    public void setCommissionPercentage(Double commissionPercentage) {
-        this.commissionPercentage = commissionPercentage;
-    }
-
-    public ArrayList<SaleResult> getSalesResults() {
-        return salesResults;
-    }
 
     public void setSaleResult(SaleResult saleResult) {
         this.salesResults.add(saleResult);

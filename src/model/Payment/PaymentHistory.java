@@ -18,25 +18,6 @@ public class PaymentHistory implements Serializable {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public PaymentEmployee getPaymentEmployee() {
-        return paymentEmployee;
-    }
-
-    public void setPaymentEmployee(PaymentEmployee paymentEmployee) {
-        this.paymentEmployee = paymentEmployee;
-    }
-
-    public Double getValue() {
-        return value;
-    }
-
-    public void setValue(Double value) {
-        this.value = value;
-    }
 
     @Override
     public String toString() {

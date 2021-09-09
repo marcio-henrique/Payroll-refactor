@@ -32,16 +32,14 @@ Refatoração do projeto do sistema Folha de Pagamento, disponível originalment
 - Parâmetro id da classe `PaymentSchedule` não é utilizado
 - Importações de classes não utilizadas nas classes `Company` e `EmployeeSyndicate`
 
-###Data Class
-23
-
 ###Feature Envy
 
 
 ##Refactoring
 
 ###Strategy
-- Foi aplicado o DP Strategy na classe `PaymentSchedule` para solucionar problemas de tratamento dos métodos de pagamento
-para os diferentes tipos de agenda: Cada agenda (mensal, semanal e bi-semanal) agora conta com sua própria classe.
+- Foi aplicado o DP Strategy na classe `PaymentSchedule` para solucionar problemas de complexidade no tratamento dos 
+métodos de pagamento para os diferentes tipos de agenda
 
-  
+###Removal of Generative Gpeculation
+- Remoção dos métodos, parâmetros e importações não utilizados no projeto
