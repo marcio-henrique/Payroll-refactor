@@ -24,7 +24,7 @@ Refatoração do projeto do sistema Folha de Pagamento, disponível originalment
 - Método `toString` da classe `PaymentSchedule` possui tratamento de lógica
 
 ###Large Class
-- Classe `Menu` possui métodos da lógica das funcionalidades undo/redo
+- Classe `Menu` possui métodos da lógica das funcionalidades de undo/redo - [Resolvido](###Memento)
 
 ###Generative Speculation
 - Diversos métodos não são utilizados, em especial métodos get/set e construtores vazios
@@ -41,5 +41,12 @@ Refatoração do projeto do sistema Folha de Pagamento, disponível originalment
 - Foi aplicado o DP Strategy na classe `PaymentSchedule` para solucionar problemas de complexidade no tratamento dos 
 métodos de pagamento para os diferentes tipos de agenda
 
-###Removal of Generative Gpeculation
+###Memento
+- O DP Memento foi aplicado para prover as funcionalidades de undo/redo da Classe Company
+
+###Extract Class
+- Métodos `storeState` e `restoreState` da classe `Menu` foram extraídos para uma nova classe `ConvertUtil` além de terem
+seus nomes aterados para, respectivamente, `company2string` e `string2company`
+
+###Removal of Generative Speculation
 - Remoção dos métodos, parâmetros e importações não utilizados no projeto

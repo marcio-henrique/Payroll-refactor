@@ -1,5 +1,6 @@
 package model.Company;
 
+import model.Company.Memento.MementoCompany;
 import model.Employee.Employee;
 import model.Payment.PaymentEmployee;
 import model.Payment.PaymentHistory;
@@ -50,5 +51,9 @@ public class Company implements Serializable {
 
     public ArrayList<PaymentHistory> getPaymentHistories() {
         return paymentHistories;
+    }
+
+    public MementoCompany saveState() {
+        return new MementoCompany(this);
     }
 }
