@@ -70,23 +70,21 @@ public class Employee implements Serializable {
         this.paymentEmployee = paymentEmployee;
     }
 
+    public String syndicateString() {
+        if (this.employeeSyndicate == null) {
+            return "No";
+        } else {
+            return "Yes\n\t" + this.employeeSyndicate;
+        }
+    }
     @Override
     public String toString() {
-        String string = "Employee" + ":\n\t" +
+        return "Employee" + ":\n\t" +
                 "id: " + this.id + "\n\t" +
                 "name: " + this.name + "\n\t" +
                 "salary: " + this.salary + "\n\t" +
                 "address: " + this.address + "\n\t" +
-                "Sindicalized: ";
-
-        if (this.employeeSyndicate == null) {
-            string += "No";
-        } else {
-            string += "Yes\n\t" + this.employeeSyndicate;
-        }
-
-        string += this.paymentEmployee;
-
-        return string;
+                "Syndicalized: " + this.syndicateString() +
+                this.paymentEmployee;
     }
 }

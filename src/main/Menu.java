@@ -29,114 +29,55 @@ public class Menu {
 
                 assert company != null;
 
-                if (option == 0) {
-                    Menu.showOptions();
-
-                } else if (option == 1) {
-                    caretaker.doSomething();
-
-                    System.out.println("\nADD EMPLOYEE");
-                    employeeController.createEmployee(in, company.getEmployees(), company.getPaymentEmployees(), company.getPaymentSchedules());
-
-                } else if (option == 2) {
-                    caretaker.doSomething();
-
-                    String employeeId;
-                    System.out.println("\nEDIT EMPLOYEE");
-
-                    System.out.println("Employee Id:");
-                    employeeId = in.next();
-
-                    employeeController.editEmployeeMenu(in, employeeId, company.getEmployees(), company.getPaymentSchedules());
-
-                } else if (option == 3) {
-                    caretaker.doSomething();
-
-                    String employeeId;
-                    System.out.println("\nREMOVE EMPLOYEE");
-                    System.out.println("Employee Id:");
-                    employeeId = in.next();
-
-                    employeeController.deleteEmployee(employeeId, company.getEmployees(), company.getPaymentEmployees());
-                } else if (option == 4) {
-                    System.out.println("\nLIST EMPLOYEES");
-                    employeeController.listEmployees(company.getEmployees());
-
-                } else if (option == 5) {
-                    caretaker.doSomething();
-
-                    String employeeId;
-                    System.out.println("\nADD TIME CARD");
-                    System.out.println("Employee Id:");
-                    employeeId = in.next();
-
-                    employeeController.addTimeCard(in, employeeId, company.getEmployees());
-
-                } else if (option == 6) {
-                    caretaker.doSomething();
-
-                    String employeeId;
-                    System.out.println("\nADD SALE RESULT");
-                    System.out.println("Employee Id:");
-                    employeeId = in.next();
-
-                    employeeController.addSaleResult(in, employeeId, company.getEmployees());
-
-                } else if (option == 7) {
-                    caretaker.doSomething();
-
-                    String employeeId;
-                    System.out.println("\nADD ADDITIONAL SERVICE TAX");
-                    System.out.println("Employee Id:");
-                    employeeId = in.next();
-
-                    employeeController.addAdditionalServiceTax(in, employeeId, company.getEmployees());
-
-                } else if (option == 8) {
-                    caretaker.doSomething();
-
-                    System.out.println("\nRUN PAYROLL");
-
-                    paymentController.payRoll(in, company.getPaymentEmployees(), company.getPaymentHistories());
-
-                } else if (option == 9) {
-                    company = caretaker.undo();
-                } else if (option == 10) {
-                    company = caretaker.redo();
-
-                } else if (option == 11) {
-                    caretaker.doSomething();
-
-                    String employeeId;
-                    System.out.println("\nCHANGE EMPLOYEE PAYMENT SCHEDULE");
-                    System.out.println("Employee Id:");
-                    employeeId = in.next();
-
-                    Employee employee = employeeController.searchEmployee(employeeId, company.getEmployees());
-                    if (employee == null) {
-                        System.out.println("Employee not found");
-                    } else {
-                        paymentController.editEmployeePaymentSchedule(in, employee.getPaymentEmployee(), company.getPaymentSchedules());
-                    }
-                } else if (option == 12) {
-                    caretaker.doSomething();
-
-                    System.out.println("ADD NEW PAYMENT SCHEDULE");
-                    paymentController.addPaymentSchedule(in, company.getPaymentSchedules());
-
-                } else if (option == 13) {
-                    if (company.getPaymentHistories().isEmpty()) {
-                        System.out.println("Empty Payment Histories");
-                    } else {
-                        PaymentController.printPaymentHistories(company.getPaymentHistories());
-                    }
-
-                } else if (option == 14) {
-                    System.out.println("\nBye");
-                    return;
-
-                } else {
-                    System.out.println("Incorrect Option, try again. To show all options, type 0");
+                switch (option) {
+                    case 0:
+                        Menu.showOptions();
+                        break;
+                    case 1:
+                        Menu.addEmployeeOption(caretaker, company, employeeController, in);
+                        break;
+                    case 2:
+                        Menu.editEmployeeOption(caretaker, company, employeeController, in);
+                        break;
+                    case 3:
+                        Menu.removeEmployeeOption(caretaker, company, employeeController, in);
+                        break;
+                    case 4:
+                        Menu.listEmployeesOption(company, employeeController);
+                        break;
+                    case 5:
+                        Menu.addTimeCardOption(caretaker, company, employeeController, in);
+                        break;
+                    case 6:
+                        Menu.addSaleResultOption(caretaker, company, employeeController, in);
+                        break;
+                    case 7:
+                        Menu.addAdditionalServiceTaxOption(caretaker, company, employeeController, in);
+                        break;
+                    case 8:
+                        Menu.runPayrollOption(caretaker, company, paymentController, in);
+                        break;
+                    case 9:
+                        company = Menu.undoOption(caretaker, company);
+                        break;
+                    case 10:
+                        company = Menu.redoOption(caretaker, company);
+                        break;
+                    case 11:
+                        Menu.changeEmployeePaymentScheduleOption(caretaker, company, employeeController, paymentController, in);
+                        break;
+                    case 12:
+                        Menu.addPaymentScheduleOption(caretaker, company, paymentController, in);
+                        break;
+                    case 13:
+                        Menu.listPaymentHistoriesOption(company);
+                        break;
+                    case 14:
+                        System.out.println("\nBye");
+                        return;
+                    default:
+                        System.out.println("Incorrect Option, try again. To show all options, type 0");
+                        break;
                 }
 
             }
@@ -167,4 +108,130 @@ public class Menu {
         System.out.println("13 - List Payment Histories");
         System.out.println("14 - Exit");
     }
+
+    private static void addEmployeeOption(CaretakerCompany caretaker, Company company, EmployeeController employeeController, Scanner in) {
+        caretaker.doSomething();
+        System.out.println("\nADD EMPLOYEE");
+        employeeController.createEmployee(in, company.getEmployees(), company.getPaymentEmployees(), company.getPaymentSchedules());
+    }
+
+    private static void editEmployeeOption(CaretakerCompany caretaker, Company company, EmployeeController employeeController, Scanner in) {
+        caretaker.doSomething();
+
+        String employeeId;
+        System.out.println("\nEDIT EMPLOYEE");
+
+        System.out.println("Employee Id:");
+        employeeId = in.next();
+
+        employeeController.editEmployeeMenu(in, employeeId, company.getEmployees(), company.getPaymentSchedules());
+    }
+
+    private static void removeEmployeeOption(CaretakerCompany caretaker, Company company, EmployeeController employeeController, Scanner in) {
+        caretaker.doSomething();
+
+        String employeeId;
+        System.out.println("\nREMOVE EMPLOYEE");
+        System.out.println("Employee Id:");
+        employeeId = in.next();
+
+        employeeController.deleteEmployee(employeeId, company.getEmployees(), company.getPaymentEmployees());
+    }
+
+    private static void listEmployeesOption(Company company, EmployeeController employeeController) {
+        System.out.println("\nLIST EMPLOYEES");
+        employeeController.listEmployees(company.getEmployees());
+    }
+
+    private static void addTimeCardOption(CaretakerCompany caretaker, Company company, EmployeeController employeeController, Scanner in) {
+        caretaker.doSomething();
+
+        String employeeId;
+        System.out.println("\nADD TIME CARD");
+        System.out.println("Employee Id:");
+        employeeId = in.next();
+
+        employeeController.addTimeCard(in, employeeId, company.getEmployees());
+    }
+
+    private static void addSaleResultOption(CaretakerCompany caretaker, Company company, EmployeeController employeeController, Scanner in) {
+        caretaker.doSomething();
+
+        String employeeId;
+        System.out.println("\nADD SALE RESULT");
+        System.out.println("Employee Id:");
+        employeeId = in.next();
+
+        employeeController.addSaleResult(in, employeeId, company.getEmployees());
+    }
+
+    private static void addAdditionalServiceTaxOption(CaretakerCompany caretaker, Company company, EmployeeController employeeController, Scanner in) {
+        caretaker.doSomething();
+
+        String employeeId;
+        System.out.println("\nADD ADDITIONAL SERVICE TAX");
+        System.out.println("Employee Id:");
+        employeeId = in.next();
+
+        employeeController.addAdditionalServiceTax(in, employeeId, company.getEmployees());
+    }
+
+    private static void runPayrollOption(CaretakerCompany caretaker, Company company, PaymentController paymentController, Scanner in) {
+        caretaker.doSomething();
+
+        System.out.println("\nRUN PAYROLL");
+
+        paymentController.payRoll(in, company.getPaymentEmployees(), company.getPaymentHistories());
+    }
+
+    private static Company undoOption(CaretakerCompany caretaker, Company company) {
+        company = caretaker.undo();
+        System.out.println("Done");
+
+        return company;
+    }
+
+    private static Company redoOption(CaretakerCompany caretaker, Company company) {
+        company = caretaker.redo();
+        System.out.println("Done");
+
+        return company;
+    }
+
+    private static void changeEmployeePaymentScheduleOption(CaretakerCompany caretaker, Company company, EmployeeController employeeController, PaymentController paymentController, Scanner in) {
+        caretaker.doSomething();
+
+        String employeeId;
+        System.out.println("\nCHANGE EMPLOYEE PAYMENT SCHEDULE");
+        System.out.println("Employee Id:");
+        employeeId = in.next();
+
+        Employee employee = employeeController.searchEmployee(employeeId, company.getEmployees());
+        if (employee == null) {
+            System.out.println("Employee not found");
+        } else {
+            paymentController.editEmployeePaymentSchedule(in, employee.getPaymentEmployee(), company.getPaymentSchedules());
+        }
+    }
+
+    private static void addPaymentScheduleOption(CaretakerCompany caretaker, Company company, PaymentController paymentController, Scanner in) {
+        caretaker.doSomething();
+
+        System.out.println("ADD NEW PAYMENT SCHEDULE");
+        paymentController.addPaymentSchedule(in, company.getPaymentSchedules());
+    }
+
+    private static void listPaymentHistoriesOption(Company company) {
+        if (company.getPaymentHistories().isEmpty()) {
+            System.out.println("Empty Payment Histories");
+        } else {
+            PaymentController.printPaymentHistories(company.getPaymentHistories());
+        }
+    }
+
+
+
+
+
+
 }

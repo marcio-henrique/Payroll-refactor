@@ -24,19 +24,21 @@ public class PaymentMethod implements Serializable {
         this.checkNumber = checkNumber;
     }
 
+    public String paymentTypeString () {
+        if (type == 1) {
+            return  "Deposit";
+        } else if (type == 2) {
+            return  "check in address, check number= " + checkNumber;
+        } else if (type == 3) {
+            return  "check in hands, check number= " + checkNumber;
+        }
+        return "";
+    }
     @Override
     public String toString() {
-        String typeString = "";
-        if (type == 1) {
-            typeString = "Deposit";
-        } else if (type == 2) {
-            typeString = "check in address, check number= " + checkNumber;
-        } else if (type == 3) {
-            typeString = "check in hands, check number= " + checkNumber;
-        }
 
         return "PaymentMethod{" +
-                "type=" + typeString +
+                "type=" + this.paymentTypeString() +
                 ", agency=" + agency +
                 ", account=" + account +
                 ", variation=" + variation +
