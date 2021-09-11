@@ -13,7 +13,7 @@ Refatoração do projeto do sistema Folha de Pagamento, disponível originalment
 
 ### Long Parameter List
 - No método `editEmployeeMenu` da classe `EmployeeController`, a chamada dos métodos construtores das classes `Hourly`,
-`Commissioned` e `Salaried` recebem parâmetros de um único objeto ao invés do mesmo
+`Commissioned` e `Salaried` recebem parâmetros de um único objeto ao invés do mesmo [Resolvido](#introduce-parameter-object)
 
 ### Long Method
 - Método `menu` da classe `Menu` possui diversos tratamentos para as opções do menu - [Resolvido](#extract-method)
@@ -51,7 +51,8 @@ seus nomes aterados para, respectivamente, `company2string` e `string2company`
 - Tratamentos de lógica extraídos dos métodos `toString` das classes `PaymentSchedule`, `PaymentMethod` e `Employee`
 
 ### Introduce Parameter Object
-
+- Adição de construtores nas classes `Employee`, `Hourly`,
+`Commissioned` e `Salaried` com objeto `Employee` como Parâmetro
 
 ### Removal of Generative Speculation
 - Remoção dos métodos, parâmetros e importações não utilizados no projeto

@@ -92,6 +92,7 @@ public class EmployeeController {
 
             System.out.println("New salary:");
             salary = in.nextDouble();
+            employee.setSalary(salary);
 
             employees.remove(employee);
             PaymentSchedule paymentSchedule;
@@ -99,7 +100,7 @@ public class EmployeeController {
 
             switch (type) {
                 case 1:
-                    employee = new Hourly(employee.getId(), employee.getName(), salary, employee.getAddress());
+                    employee = new Hourly(employee);
                     paymentSchedule = PaymentController.getPaymentSchedule(new WeeklySchedule(), null, 5, paymentSchedules);
 
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
@@ -107,7 +108,7 @@ public class EmployeeController {
                     employees.add(employee);
                     break;
                 case 2:
-                    employee = new Salaried(employee.getId(), employee.getName(), salary, employee.getAddress());
+                    employee = new Salaried(employee);
                     paymentSchedule = PaymentController.getPaymentSchedule(new MonthlySchedule(), 0, null,  paymentSchedules);
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
                     employee.setPaymentEmployee(paymentEmployee);
@@ -117,7 +118,7 @@ public class EmployeeController {
                     Double commission;
                     System.out.println("Commission Percentage:");
                     commission = in.nextDouble();
-                    employee = new Commissioned(employee.getId(), employee.getName(), salary, employee.getAddress(), commission);
+                    employee = new Commissioned(employee, commission);
                     paymentSchedule = PaymentController.getPaymentSchedule(new BiWeeklySchedule(), null, 5, paymentSchedules);
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
                     employee.setPaymentEmployee(paymentEmployee);

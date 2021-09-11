@@ -7,6 +7,10 @@ import java.util.UUID;
 public class Hourly extends Employee {
     private ArrayList<TimeCard> timeCards;
 
+    public Hourly(Employee employee) {
+        super(employee);
+        this.timeCards = new ArrayList<TimeCard>();
+    }
     public Hourly(UUID id, String name, Double salary, String address) {
         super(id, name, salary, address);
         this.timeCards = new ArrayList<TimeCard>();

@@ -4,6 +4,9 @@ import java.util.UUID;
 
 public class Salaried extends Employee {
 
+    public Salaried(Employee employee) {
+        super(employee);
+    }
     public Salaried(UUID id, String name, Double salary, String address) {
         super(id, name, salary, address);
     }

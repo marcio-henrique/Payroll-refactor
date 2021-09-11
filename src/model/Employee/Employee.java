@@ -14,6 +14,9 @@ public class Employee implements Serializable {
     private EmployeeSyndicate employeeSyndicate;
     private PaymentEmployee paymentEmployee;
 
+    public Employee(Employee employee) {
+        this(employee.getId(), employee.getName(), employee.getSalary(), employee.getAddress());
+    }
     public Employee(String name, Double salary, String address) {
         this(UUID.randomUUID(), name, salary, address);
     }
@@ -40,6 +43,10 @@ public class Employee implements Serializable {
 
     public Double getSalary() {
         return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
     }
 
     public String getAddress() {

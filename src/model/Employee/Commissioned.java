@@ -8,6 +8,12 @@ public class Commissioned extends Employee {
     private Double commissionPercentage;
     private ArrayList<SaleResult> salesResults;
 
+    public Commissioned(Employee employee, Double commissionPercentage) {
+        super(employee);
+        this.commissionPercentage = commissionPercentage;
+        this.salesResults = new ArrayList<SaleResult>();
+    }
+
     public Commissioned(UUID id, String name, Double salary, String address, Double commissionPercentage) {
         super(id, name, salary, address);
         this.commissionPercentage = commissionPercentage;
