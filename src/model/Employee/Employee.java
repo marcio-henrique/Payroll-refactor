@@ -15,11 +15,7 @@ public class Employee implements Serializable {
     private PaymentEmployee paymentEmployee;
 
     public Employee(String name, Double salary, String address) {
-        this.id = UUID.randomUUID();
-        this.name = name;
-        this.salary = salary;
-        this.address = address;
-        this.employeeSyndicate = null;
+        this(UUID.randomUUID(), name, salary, address);
     }
 
     public Employee(UUID id, String name, Double salary, String address) {
