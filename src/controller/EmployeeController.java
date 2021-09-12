@@ -101,7 +101,7 @@ public class EmployeeController {
             switch (type) {
                 case 1:
                     employee = new Hourly(employee);
-                    paymentSchedule = PaymentController.getPaymentSchedule(new WeeklySchedule(), null, 5, paymentSchedules);
+                    paymentSchedule = ScheduleController.getPaymentSchedule(new WeeklySchedule(), null, 5, paymentSchedules);
 
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
                     employee.setPaymentEmployee(paymentEmployee);
@@ -109,7 +109,7 @@ public class EmployeeController {
                     break;
                 case 2:
                     employee = new Salaried(employee);
-                    paymentSchedule = PaymentController.getPaymentSchedule(new MonthlySchedule(), 0, null,  paymentSchedules);
+                    paymentSchedule = ScheduleController.getPaymentSchedule(new MonthlySchedule(), 0, null,  paymentSchedules);
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
                     employee.setPaymentEmployee(paymentEmployee);
                     employees.add(employee);
@@ -119,7 +119,7 @@ public class EmployeeController {
                     System.out.println("Commission Percentage:");
                     commission = in.nextDouble();
                     employee = new Commissioned(employee, commission);
-                    paymentSchedule = PaymentController.getPaymentSchedule(new BiWeeklySchedule(), null, 5, paymentSchedules);
+                    paymentSchedule = ScheduleController.getPaymentSchedule(new BiWeeklySchedule(), null, 5, paymentSchedules);
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
                     employee.setPaymentEmployee(paymentEmployee);
                     employees.add(employee);
@@ -232,17 +232,17 @@ public class EmployeeController {
         switch (type) {
             case 1:
                 employee = new Hourly(name, salary, address);
-                paymentSchedule = PaymentController.getPaymentSchedule(new WeeklySchedule(), null, 5, paymentSchedules);
+                paymentSchedule = ScheduleController.getPaymentSchedule(new WeeklySchedule(), null, 5, paymentSchedules);
                 break;
             case 2:
                 employee = new Salaried(name, salary, address);
-                paymentSchedule = PaymentController.getPaymentSchedule(new MonthlySchedule(), 0, null, paymentSchedules);
+                paymentSchedule = ScheduleController.getPaymentSchedule(new MonthlySchedule(), 0, null, paymentSchedules);
                 break;
             case 3:
                 System.out.println("Commission Percentage:");
                 commission = in.nextDouble();
                 employee = new Commissioned(name, salary, address, commission);
-                paymentSchedule = PaymentController.getPaymentSchedule(new BiWeeklySchedule(), null, 5, paymentSchedules);
+                paymentSchedule = ScheduleController.getPaymentSchedule(new BiWeeklySchedule(), null, 5, paymentSchedules);
                 break;
             default:
                 System.out.println("Invalid Option, try again");

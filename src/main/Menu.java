@@ -2,6 +2,7 @@ package main;
 
 import controller.EmployeeController;
 import controller.PaymentController;
+import controller.ScheduleController;
 import model.Company.Company;
 import model.Company.Memento.CaretakerCompany;
 import model.Employee.Employee;
@@ -210,7 +211,7 @@ public class Menu {
         if (employee == null) {
             System.out.println("Employee not found");
         } else {
-            paymentController.editEmployeePaymentSchedule(in, employee.getPaymentEmployee(), company.getPaymentSchedules());
+            ScheduleController.editEmployeePaymentSchedule(in, employee.getPaymentEmployee(), company.getPaymentSchedules());
         }
     }
 
@@ -218,7 +219,7 @@ public class Menu {
         caretaker.doSomething();
 
         System.out.println("ADD NEW PAYMENT SCHEDULE");
-        paymentController.addPaymentSchedule(in, company.getPaymentSchedules());
+        ScheduleController.addPaymentSchedule(in, company.getPaymentSchedules());
     }
 
     private static void listPaymentHistoriesOption(Company company) {

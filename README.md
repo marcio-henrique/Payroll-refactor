@@ -24,8 +24,8 @@ Refatoração do projeto do sistema Folha de Pagamento, disponível originalment
 - Métodos `toString` das classes `PaymentSchedule`, `PaymentMethod` e `Employee` possuem tratamento de lógica - [Resolvido](#extract-method)
 
 ### Large Class
-- Classe `Menu` possui métodos da lógica das funcionalidades de undo/redo - [Resolvido](#memento)
-- Classe `PaymentController` trata tanto das `PaymentSchedule` quanto da `payroll` 
+- Classe `Menu` possui métodos da lógica das funcionalidades de undo/redo - Resolvido: [Memento](#memento) e [Extract Class](#extract-class)
+- Classe `PaymentController` trata tanto das `PaymentSchedule` quanto da `payroll` [Resolvido](#extract-class)
 
 ### Generative Speculation
 - Diversos métodos não são utilizados, em especial métodos get/set e construtores vazios - [Resolvido](#removal-of-generative-speculation)
@@ -45,13 +45,16 @@ métodos de pagamento para os diferentes tipos de agenda
 ### Extract Class
 - Métodos `storeState` e `restoreState` da classe `Menu` foram extraídos para uma nova classe `ConvertUtil` além de terem
 seus nomes aterados para, respectivamente, `company2string` e `string2company`
-- Métodos `addPaymentSchedule` e `editPaymentSchedule` da classe `PaymentController` foram extraídos para uma nova classe 
+- Métodos `addPaymentSchedule` e `editPaymentSchedule` da classe `PaymentController` foram extraídos para uma nova classe
+`ScheduleController`
 - Remoção da duplicação de construtores da classe `Employee`
 
 ### Extract Method
 - Métodos de cada opção do método `menu` da classe `Menu` foram extraídos
 - Tratamentos de lógica extraídos dos métodos `toString` das classes `PaymentSchedule`, `PaymentMethod` e `Employee`
 - Método `payRoll` da classe `PaymentController` foi dividido em diversos métodos, de acordo com suas responsabilidades
+- - Métodos `addPaymentSchedule` e `editPaymentSchedule` (agora) da classe `ScheduleController` foram divididos em diversos
+métodos, de acordo com suas responsabilidades
 
 ### Introduce Parameter Object
 - Adição de construtores nas classes `Employee`, `Hourly`,

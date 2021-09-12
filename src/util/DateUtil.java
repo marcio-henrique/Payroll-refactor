@@ -10,6 +10,9 @@ public class DateUtil {
         return  day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY;
     }
 
+    public static int string2weekDayValue(String string) {
+        return DayOfWeek.valueOf(string.toUpperCase()).getValue();
+    }
 
     public static boolean isLastWorkDayOfMonth(LocalDate date) {
         LocalDate lastDayOfMonth = date.with(TemporalAdjusters.lastDayOfMonth());
