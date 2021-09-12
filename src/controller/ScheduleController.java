@@ -29,7 +29,7 @@ public class ScheduleController {
         if (Objects.equals(scheduleArray[0], "monthly")) {
             paymentSchedule = createMonthlySchedule(scheduleArray[1]);
         } else if (Objects.equals(scheduleArray[0], "weekly")) {
-            createWeeklySchedule(scheduleArray[1], scheduleArray[2]);
+            paymentSchedule = createWeeklySchedule(scheduleArray[1], scheduleArray[2]);
         } else {
             System.out.println("incorrect type");
         }
