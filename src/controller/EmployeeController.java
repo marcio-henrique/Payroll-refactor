@@ -306,7 +306,7 @@ public class EmployeeController {
     private Hourly getHourlyEmployee(String employeeId, ArrayList<Employee> employees) {
         Employee employee = this.searchEmployee(employeeId, employees);
 
-        if (employee == null || !employee.getClass().isAssignableFrom(Hourly.class)) {
+        if (employee == null || !employee.isHourly()) {
             return null;
         }
 
@@ -343,7 +343,7 @@ public class EmployeeController {
     private Commissioned getCommissionedEmployee(String employeeId, ArrayList<Employee> employees) {
         Employee employee = this.searchEmployee(employeeId, employees);
 
-        if (employee == null || !employee.getClass().isAssignableFrom(Commissioned.class)) {
+        if (employee == null || !employee.isCommissioned()) {
             return null;
         }
 

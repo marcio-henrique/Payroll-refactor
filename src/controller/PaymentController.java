@@ -20,52 +20,15 @@ import static java.lang.Integer.parseInt;
 public class PaymentController {
 
     public void payRoll (Scanner in, ArrayList<PaymentEmployee> paymentEmployees, ArrayList<PaymentHistory> paymentHistories) {
-
-        System.out.println("date (format YYYY-MM-d, ex.: 2021-08-24):");
-        String dateString = in.next();
-
-        LocalDate date = LocalDate.parse(dateString);
-
+        LocalDate date = getPayDate(in);
         boolean payRounded = false;
 
         for (PaymentEmployee paymentEmployee : paymentEmployees) {
             if (paymentEmployee.isPayTime(date)) {
                 payRounded = true;
 
-                Employee employee = paymentEmployee.getEmployee();
-                PaymentHistory lastPayment = paymentEmployee.getLastPayment();
-
                 Double salary = 0.0;
-                if (employee.getClass().isAssignableFrom(Commissioned.class)) {
-                    Commissioned commissioned = (Commissioned) employee;
-                    salary += commissioned.getSalary() / paymentEmployee.getPaymentSchedule().getMonthlyDiv();
-                    if (lastPayment == null) {
-                        salary += commissioned.getCommissionsValues();
-                    } else {
-                        salary += commissioned.getCommissionsValues(lastPayment.getDate());
-                    }
-
-                } else if (employee.getClass().isAssignableFrom(Salaried.class)) {
-                    salary = employee.getSalary();
-                } else if (employee.getClass().isAssignableFrom(Hourly.class)) {
-                    Hourly hourly = (Hourly) employee;
-                    if (lastPayment == null) {
-                        salary += hourly.getFullSalary();
-                    } else {
-                        salary += hourly.getFullSalary(lastPayment.getDate());
-                    }
-                }
-
-                EmployeeSyndicate employeeSyndicate = employee.getEmployeeSyndicate();
-                if (employeeSyndicate != null) {
-                    if (lastPayment == null) {
-                        salary -= employeeSyndicate.getAdditionalServiceTaxes();
-                    } else {
-                        salary -= employeeSyndicate.getAdditionalServiceTaxes(lastPayment.getDate());
-                    }
-
-                    salary -= employeeSyndicate.getMonthlyTax() / paymentEmployee.getPaymentSchedule().getMonthlyDiv();
-                }
+                salary = this.getSalary(paymentEmployee.getEmployee(), paymentEmployee, paymentEmployee.getLastPayment(), salary);
 
                 PaymentHistory newPayment = new PaymentHistory(paymentEmployee, date, salary);
 
@@ -74,11 +37,71 @@ public class PaymentController {
                 System.out.println(newPayment);
             }
         }
+
+        this.printPayState(payRounded);
+    }
+
+    private void printPayState(boolean payRounded) {
         if (payRounded) {
             System.out.println("Finish");
         } else {
             System.out.println("Empty Payroll on the date");
         }
+    }
+
+    private LocalDate getPayDate(Scanner in) {
+        System.out.println("date (format YYYY-MM-d, ex.: 2021-08-24):");
+        String dateString = in.next();
+
+        return LocalDate.parse(dateString);
+    }
+
+    private Double getSalary(Employee employee, PaymentEmployee paymentEmployee, PaymentHistory lastPayment, Double salary) {
+        if (employee.isCommissioned()) {
+            salary = this.getCommissionedSalary((Commissioned) employee, paymentEmployee, lastPayment, salary);
+        } else if (employee.isSalaried()) {
+            salary = employee.getSalary();
+        } else if (employee.isHourly()) {
+            salary = this.getHourlySalary((Hourly) employee, lastPayment, salary);
+        }
+
+        salary = this.getSyndicateDiscounts(paymentEmployee, lastPayment, employee.getEmployeeSyndicate(), salary);
+
+        return salary;
+    }
+
+    private Double getSyndicateDiscounts(PaymentEmployee paymentEmployee, PaymentHistory lastPayment, EmployeeSyndicate employeeSyndicate, Double salary) {
+        if (employeeSyndicate != null) {
+            if (lastPayment == null) {
+                salary -= employeeSyndicate.getAdditionalServiceTaxes();
+            } else {
+                salary -= employeeSyndicate.getAdditionalServiceTaxes(lastPayment.getDate());
+            }
+
+            salary -= employeeSyndicate.getMonthlyTax() / paymentEmployee.getPaymentSchedule().getMonthlyDiv();
+        }
+        return salary;
+    }
+
+    private Double getHourlySalary(Hourly hourly, PaymentHistory lastPayment, Double salary) {
+        if (lastPayment == null) {
+            salary += hourly.getFullSalary();
+        } else {
+            salary += hourly.getFullSalary(lastPayment.getDate());
+        }
+
+        return salary;
+    }
+
+    private Double getCommissionedSalary(Commissioned commissioned, PaymentEmployee paymentEmployee, PaymentHistory lastPayment, Double salary) {
+        salary += commissioned.getSalary() / paymentEmployee.getPaymentSchedule().getMonthlyDiv();
+        if (lastPayment == null) {
+            salary += commissioned.getCommissionsValues();
+        } else {
+            salary += commissioned.getCommissionsValues(lastPayment.getDate());
+        }
+
+        return salary;
     }
 
     public static void printPaymentHistories (ArrayList<PaymentHistory> paymentHistories) {

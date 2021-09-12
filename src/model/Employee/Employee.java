@@ -80,6 +80,19 @@ public class Employee implements Serializable {
             return "Yes\n\t" + this.employeeSyndicate;
         }
     }
+
+    public boolean isCommissioned() {
+        return this.getClass().isAssignableFrom(Commissioned.class);
+    }
+
+    public boolean isSalaried() {
+        return this.getClass().isAssignableFrom(Salaried.class);
+    }
+
+    public boolean isHourly() {
+        return this.getClass().isAssignableFrom(Hourly.class);
+    }
+
     @Override
     public String toString() {
         return "Employee" + ":\n\t" +
