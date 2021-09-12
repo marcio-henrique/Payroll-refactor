@@ -17,8 +17,8 @@ Refatoração do projeto do sistema Folha de Pagamento, disponível originalment
 
 ### Long Method
 - Método `menu` da classe `Menu` possui diversos tratamentos para as opções do menu - [Resolvido](#extract-method)
-- Métodos `editEmployeeMenu` e `createEmployee` da classe `EmployeeController` possuem várias responsabilidades
-- Métodos `addPaymentSchedule` e `editPaymentSchedule` da classe `PaymentController` possuem várias responsabilidades
+- Métodos `editEmployeeMenu` e `createEmployee` da classe `EmployeeController` possuem várias responsabilidades 
+- Métodos `addPaymentSchedule` e `editPaymentSchedule` da classe `PaymentController` possuem várias responsabilidades - [Resolvido](#extract-method)
 - Método `isPayTime` da classe `PaymentEmployee` possue várias responsabilidades - [Resolvido](#strategy)
 - Método `payRoll` da classe `PaymentController` possue várias responsabilidades e alta complexidade - Resolvido: [Strategy](#strategy) e [Extract Method](#extract-method)
 - Métodos `toString` das classes `PaymentSchedule`, `PaymentMethod` e `Employee` possuem tratamento de lógica - [Resolvido](#extract-method)
@@ -53,7 +53,7 @@ seus nomes aterados para, respectivamente, `company2string` e `string2company`
 - Métodos de cada opção do método `menu` da classe `Menu` foram extraídos
 - Tratamentos de lógica extraídos dos métodos `toString` das classes `PaymentSchedule`, `PaymentMethod` e `Employee`
 - Método `payRoll` da classe `PaymentController` foi dividido em diversos métodos, de acordo com suas responsabilidades
-- - Métodos `addPaymentSchedule` e `editPaymentSchedule` (agora) da classe `ScheduleController` foram divididos em diversos
+- Métodos `addPaymentSchedule` e `editPaymentSchedule` (agora) da classe `ScheduleController` foram divididos em diversos
 métodos, de acordo com suas responsabilidades
 
 ### Introduce Parameter Object
