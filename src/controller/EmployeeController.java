@@ -102,8 +102,8 @@ public class EmployeeController {
                 case 1:
                     employee = new Hourly(employee);
                     paymentSchedule = ScheduleController.getPaymentSchedule(new WeeklySchedule(), null, 5, paymentSchedules);
-
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
+                    paymentEmployee.setEmployee(employee);
                     employee.setPaymentEmployee(paymentEmployee);
                     employees.add(employee);
                     break;
@@ -111,6 +111,7 @@ public class EmployeeController {
                     employee = new Salaried(employee);
                     paymentSchedule = ScheduleController.getPaymentSchedule(new MonthlySchedule(), 0, null,  paymentSchedules);
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
+                    paymentEmployee.setEmployee(employee);
                     employee.setPaymentEmployee(paymentEmployee);
                     employees.add(employee);
                     break;
@@ -121,6 +122,7 @@ public class EmployeeController {
                     employee = new Commissioned(employee, commission);
                     paymentSchedule = ScheduleController.getPaymentSchedule(new BiWeeklySchedule(), null, 5, paymentSchedules);
                     paymentEmployee.setPaymentSchedule(paymentSchedule);
+                    paymentEmployee.setEmployee(employee);
                     employee.setPaymentEmployee(paymentEmployee);
                     employees.add(employee);
                     break;

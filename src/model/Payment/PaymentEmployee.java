@@ -25,6 +25,10 @@ public class PaymentEmployee implements Serializable {
         return employee;
     }
 
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
