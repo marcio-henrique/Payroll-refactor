@@ -15,7 +15,7 @@ public class MonthlySchedule implements ScheduleStrategy{
         if (paymentSchedule.getDay() == 0)/*last month day*/{
             return DateUtil.isLastWorkDayOfMonth(date);
 
-        } else return DateUtil.isSameDay(date, paymentSchedule.getWeekDay());
+        } else return DateUtil.isSameDay(date, paymentSchedule.getDay());
     }
 
     @Override
